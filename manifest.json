@@ -1,0 +1,15 @@
+{
+  "id": "show-favicon-from-metadata",
+  "name": "Show Favicon from Metadata",
+  "version": "1.1.0",
+  "minAppVersion": "1.0.0",
+  "author": "mdklab",
+  "authorUrl": "https://github.com/mdklab",
+  "description": "This plugin extracts a URL from the frontmatter of notes and displays an associated favicon image next to the note title in the file tree. Supports standard URLs and base64-encoded images.",
+  "isDesktopOnly": true,
+  "fundingUrl": "https://github.com/sponsors/mdklab",
+  "repository": "https://github.com/mdklab/show-favicon-from-metadata",
+  "tags": ["obsidian", "plugin", "favicon", "metadata", "visual-enhancement"],
+  "dependencies": {},
+  "requiredPermissions": ["read-vault", "modify-workspace"]
+}
