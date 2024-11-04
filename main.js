@@ -1,5 +1,5 @@
 /*
- * Obsidian Favicon Display Plugin
+ * Obsidian Note Favicon Plugin
  * 
  * @description This plugin for Obsidian extracts a URL from the note's frontmatter and displays an associated image (favicon) next to the note title in the file tree.
  * @author mdklab
@@ -43,7 +43,7 @@ module.exports = class ShowImageFromMetadataPlugin extends Plugin {
    */
   async onload() {
     try {
-      console.log('Loading ShowImageFromMetadataPlugin...');
+      console.log('Loading ObsidianNoteFaviconPlugin...');
       this.loaded = true;
       // Ensure required elements are initialized before using them
       if (!this.app || !this.app.vault || !this.app.workspace) {
@@ -57,7 +57,7 @@ module.exports = class ShowImageFromMetadataPlugin extends Plugin {
         this.updateTree();
       });
     } catch (error) {
-      console.error('Failed to load ShowImageFromMetadataPlugin:', error);
+      console.error('Failed to load ObsidianNoteFaviconPlugin:', error);
     }
   }
 
@@ -65,7 +65,7 @@ module.exports = class ShowImageFromMetadataPlugin extends Plugin {
    * Lifecycle method called when the plugin is unloaded.
    */
   onunload() {
-    console.log('Unloading ShowImageFromMetadataPlugin...');
+    console.log('Unloading ObsidianNoteFaviconPlugin...');
     this.loaded = false;
   }
 

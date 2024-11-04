@@ -1,6 +1,6 @@
-# Show Favicon from Metadata
+# Note Favicon Plugin
 
-**Obsidian Plugin** – Show Favicon from Metadata
+**Obsidian Plugin** – Note Favicon
 
 ## Description
 This Obsidian plugin extracts a URL from the frontmatter of your notes and displays an associated favicon image next to the note title in the file tree. It supports both standard URLs and base64-encoded images, making it easy to visually distinguish notes at a glance.
@@ -12,7 +12,7 @@ This Obsidian plugin extracts a URL from the frontmatter of your notes and displ
 
 ## Installation
 ### From GitHub
-1. Download the latest release from the [Releases page](https://github.com/mdklab/show-favicon-from-metadata/releases).
+1. Download the latest release from the [Releases page](https://github.com/mdklab/obsidian-note-favicon/releases).
 2. Extract the contents to your Obsidian vault's plugins folder (`.obsidian/plugins`).
 3. Enable the plugin in Obsidian's community plugin settings.
 
@@ -61,11 +61,11 @@ This plugin requires the following permissions:
 - **Modify Workspace**: To update the file tree and display the icons.
 
 ## Contributing
-Contributions are welcome! Please feel free to submit a pull request or report issues in the [GitHub repository](https://github.com/mdklab/show-favicon-from-metadata).
+Contributions are welcome! Please feel free to submit a pull request or report issues in the [GitHub repository](https://github.com/mdklab/obsidian-note-favicon).
 
 ## Support
 If you find this plugin useful, consider [sponsoring me](https://github.com/sponsors/mdklab) to support future development.
 
 ## License
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/mdklab/show-favicon-from-metadata/blob/main/LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/mdklab/obsidian-note-favicon/blob/main/LICENSE) file for details.
 
