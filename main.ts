@@ -6,7 +6,7 @@
  * @license MIT
  */
 
-import { App, Plugin, PluginSettingTab, Setting, Notice, TFile, TAbstractFile } from "obsidian";
+import {App, Plugin, PluginSettingTab, Setting, TFile} from "obsidian";
 
 /**
  * Interface for plugin settings.
