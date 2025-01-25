@@ -37,18 +37,22 @@ export default class NoteFaviconPlugin extends Plugin {
 
     // Register event listeners for file modifications
     this.registerEvent(this.app.vault.on('modify', (file) => {
-      if (file instanceof TFile) {
+      if (this.settings.enabled && file instanceof TFile) {
         this.updateImageForNoteInTree(file);
       }
     }));
     this.registerEvent(this.app.metadataCache.on('changed', (file) => {
-      this.updateImageForNoteInTree(file);
+      if (this.settings.enabled) {
+        this.updateImageForNoteInTree(file);
+      }
     }));
 
     // Ensure file tree updates after the layout is ready
     this.app.workspace.onLayoutReady(async () => {
-      await this.delay(500);
-      this.updateTree();
+      if (this.settings.enabled) {
+        await this.delay(500);
+        this.updateTree();
+      }
     });
 
     this.addSettingTab(new NoteFaviconSettingTab(this.app, this));
@@ -59,6 +63,7 @@ export default class NoteFaviconPlugin extends Plugin {
    */
   onunload() {
     console.log('Unloading NoteFaviconPlugin...');
+    this.removeAllFavicons();
   }
 
   /**
@@ -73,6 +78,13 @@ export default class NoteFaviconPlugin extends Plugin {
    */
   async saveSettings() {
     await this.saveData(this.settings);
+
+    // Apply settings change immediately
+    if (this.settings.enabled) {
+      this.updateTree();
+    } else {
+      this.removeAllFavicons();
+    }
   }
 
   /**
@@ -87,6 +99,8 @@ export default class NoteFaviconPlugin extends Plugin {
    * Updates favicons for all markdown files in the vault.
    */
   async updateTree() {
+    if (!this.settings.enabled) return;
+
     const files = this.app.vault.getMarkdownFiles();
     for (const file of files) {
       await this.updateImageForNoteInTree(file);
@@ -98,7 +112,7 @@ export default class NoteFaviconPlugin extends Plugin {
    * @param file The markdown file to update.
    */
   async updateImageForNoteInTree(file: TFile) {
-    if (!file || !file.path.endsWith('.md')) return;
+    if (!this.settings.enabled || !file || !file.path.endsWith('.md')) return;
 
     const metadata = await this.getMetadata(file);
     if (!metadata || !metadata.favicon) {
@@ -113,6 +127,16 @@ export default class NoteFaviconPlugin extends Plugin {
     const fileTreeElement = this.findTreeElementForFile(file.path);
     if (fileTreeElement) {
       this.updateImageInTreeElement(fileTreeElement, imageUrl);
+    }
+  }
+
+  /**
+   * Removes all favicons from the file tree when the setting is disabled.
+   */
+  removeAllFavicons() {
+    const files = this.app.vault.getMarkdownFiles();
+    for (const file of files) {
+      this.removeImageFromTreeElement(file.path);
     }
   }
 
