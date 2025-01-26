@@ -23,3 +23,5 @@ data.json
 
 .aider*
 .env
+
+cache.json
