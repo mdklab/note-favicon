@@ -2,8 +2,8 @@ name: Release Obsidian plugin
 
 on:
   push:
-    tags:
-      - "*"
+    branches:
+      - test-release
 
 jobs:
   build:
@@ -18,18 +18,29 @@ jobs:
         with:
           node-version: "18.x"
 
+      - name: Install dependencies
+        run: npm install
+
       - name: Build plugin
+        run: npm run build
+
+      - name: Verify build output
         run: |
-          npm install
-          npm run build
+          ls -la
+          if [ ! -f "main.js" ]; then echo "Error: main.js not found!"; exit 1; fi
+          if [ ! -f "styles.css" ]; then echo "Error: styles.css not found!"; exit 1; fi
+          if [ ! -f "manifest.json" ]; then echo "Error: manifest.json not found!"; exit 1; fi
+
+      - name: Temporarily stage built files for release
+        run: git add -f main.js styles.css manifest.json
 
       - name: Create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          tag="${GITHUB_REF#refs/tags/}"
+          tag="test-$(date +%Y%m%d-%H%M%S)"
 
           gh release create "$tag" \
-            --title="$tag" \
+            --title="Test Release: $tag" \
             --draft \
             main.js manifest.json styles.css
