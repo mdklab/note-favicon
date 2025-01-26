@@ -5,10 +5,11 @@
     "strict": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "outDir": "./dist",
+    "outDir": "./",
     "rootDir": "./",
     "allowJs": false,
     "lib": ["DOM", "ES6"]
   },
-  "include": ["main.ts"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
 }
