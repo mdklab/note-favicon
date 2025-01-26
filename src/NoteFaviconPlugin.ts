@@ -100,9 +100,13 @@ export default class NoteFaviconPlugin extends Plugin {
         if (!cachedFavicon) {
             cachedFavicon = await this.cache.fetchAndCacheFavicon(metadata.favicon);
         }
+        if (!cachedFavicon) {
+            this.removeImageFromTreeElement(file.path);
+            return;
+        }
 
         const fileTreeElement = this.findTreeElementForFile(file.path);
-        if (fileTreeElement && cachedFavicon) {
+        if (fileTreeElement) {
             this.updateImageInTreeElement(fileTreeElement, cachedFavicon);
         }
     }
