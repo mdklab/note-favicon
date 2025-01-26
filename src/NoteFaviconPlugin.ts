@@ -157,7 +157,7 @@ export default class NoteFaviconPlugin extends Plugin {
     removeImageFromTreeElement(path: string) {
         const fileTreeElement = this.findTreeElementForFile(path);
         if (fileTreeElement) {
-            const img = fileTreeElement.querySelector('.tree-image');
+            const img = fileTreeElement.querySelector('.tree-favicon');
             if (img) fileTreeElement.removeChild(img);
         }
     }
@@ -169,18 +169,13 @@ export default class NoteFaviconPlugin extends Plugin {
      */
     updateImageInTreeElement(element: HTMLElement, url: string) {
         if (!url) return;
-        let img = element.querySelector('.tree-image') as HTMLImageElement | null;
+        let img = element.querySelector('.tree-favicon') as HTMLImageElement | null;
         if (img) {
             img.src = url;
         } else {
             img = document.createElement('img');
-            img.classList.add('tree-image');
+            img.classList.add('tree-favicon');
             img.src = url;
-            img.style.width = '20px';
-            img.style.height = '20px';
-            img.style.marginRight = '5px';
-            img.style.marginBottom = '2px';
-            img.style.verticalAlign = 'middle';
             element.insertBefore(img, element.firstChild);
         }
     }
