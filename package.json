@@ -1,7 +1,7 @@
 {
   "name": "note-favicon",
   "version": "1.2.4",
-  "description": "This plugin extracts a URL from the frontmatter of notes and displays an associated favicon image next to the note title in the file tree.",
+  "description": "Extracts a URL from the frontmatter of notes and displays an associated favicon image next to the note title in the file tree.",
   "main": "main.js",
   "scripts": {
     "dev": "node esbuild.config.mjs",
