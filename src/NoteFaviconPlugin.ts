@@ -2,6 +2,7 @@ import {Plugin, TFile} from "obsidian";
 import NoteFaviconSettingTab, {DEFAULT_SETTINGS, NoteFaviconSettings} from "./NoteFaviconSettingTab";
 import Utils from "./Utils";
 import NoteFaviconCache from "./NoteFaviconCache";
+import {FileExplorerView, FileExplorerWorkspaceLeaf} from "./file-explorer";
 
 
 /**
@@ -17,7 +18,7 @@ export default class NoteFaviconPlugin extends Plugin {
     async onload() {
         await this.loadSettings();
         console.log('Loading NoteFaviconPlugin...');
-        this.cache = new NoteFaviconCache(this.app, this.settings);
+        this.cache = new NoteFaviconCache(this.app, this.manifest, this.settings);
 
         // Register event listeners for file modifications
         this.registerEvent(this.app.vault.on('modify', (file) => {
@@ -135,16 +136,16 @@ export default class NoteFaviconPlugin extends Plugin {
      * @param path The path of the file to locate in the file tree.
      */
     findTreeElementForFile(path: string): HTMLElement | null {
-        const fileExplorerLeaf = this.app.workspace.getLeavesOfType('file-explorer')[0];
+        const fileExplorerLeaf = this.app.workspace.getLeavesOfType('file-explorer')[0] as FileExplorerWorkspaceLeaf;
         if (!fileExplorerLeaf) return null;
 
-        const fileExplorerView = fileExplorerLeaf.view as any;
+        const fileExplorerView = fileExplorerLeaf.view as FileExplorerView;
         if (!fileExplorerView || !fileExplorerView.fileItems) return null;
 
         for (const fileItem of Object.values(fileExplorerView.fileItems)) {
-            const typedItem = fileItem as any;
+            const typedItem = fileItem;
             if (typedItem.file?.path === path) {
-                return typedItem.titleEl || typedItem.selfEl?.querySelector('.tree-item-inner.nav-file-title-content') || null;
+                return typedItem.selfEl?.querySelector('.tree-item-inner.nav-file-title-content') || null;
             }
         }
         return null;

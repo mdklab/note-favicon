@@ -8,7 +8,7 @@
   "description": "This plugin extracts a URL from the frontmatter of notes and displays an associated favicon image next to the note title in the file tree. Supports standard URLs and base64-encoded images.",
   "isDesktopOnly": true,
   "fundingUrl": "https://github.com/sponsors/mdklab",
-  "repository": "https://github.com/mdklab/obsidian-note-favicon",
+  "repository": "https://github.com/mdklab/note-favicon",
   "tags": ["obsidian", "plugin", "favicon", "metadata", "visual-enhancement"],
   "dependencies": {},
   "requiredPermissions": ["read-vault", "modify-workspace"]
