@@ -77,7 +77,7 @@ export default class NoteFaviconCache {
 
     private getHostname(url: string) {
         try {
-            return new URL(url).hostname;
+            return new URL(url).origin;
         } catch (error) {
             return null;
         }

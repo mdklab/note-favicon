@@ -39,7 +39,7 @@ Not available yet.
 Here is how a note frontmatter with a favicon URL looks:
 ```yaml
 ---
-favicon: http://www.stackoverflow.com
+favicon: https://developer.mozilla.org/en-US/
 ---
 ```
 
@@ -54,6 +54,8 @@ favicon: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACm
 
 This will show the Obsidian favicon next to the note in the file tree.
 
+![Screenshot 1](docs/plugin-screen-01.png)
+*Favicon displayed next to note titles in the file tree.*
 
 ## Permissions
 This plugin requires the following permissions:
