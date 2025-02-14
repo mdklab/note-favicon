@@ -1,6 +1,5 @@
 import {Plugin, TFile} from "obsidian";
 import NoteFaviconSettingTab, {DEFAULT_SETTINGS, NoteFaviconSettings} from "./NoteFaviconSettingTab";
-import Utils from "./Utils";
 import NoteFaviconCache from "./NoteFaviconCache";
 import {FileExplorerView, FileExplorerWorkspaceLeaf} from "./file-explorer";
 
@@ -35,8 +34,8 @@ export default class NoteFaviconPlugin extends Plugin {
         // Ensure file tree updates after the layout is ready
         this.app.workspace.onLayoutReady(async () => {
             if (this.settings.enabled) {
-                await Utils.delay(500);
-                this.updateTree();
+                await sleep(500);
+                await this.updateTree();
             }
         });
 
@@ -66,7 +65,7 @@ export default class NoteFaviconPlugin extends Plugin {
 
         // Apply settings change immediately
         if (this.settings.enabled) {
-            this.updateTree();
+            await this.updateTree();
         } else {
             this.removeAllFavicons();
         }
