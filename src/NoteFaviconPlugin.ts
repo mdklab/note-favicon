@@ -90,6 +90,8 @@ export default class NoteFaviconPlugin extends Plugin {
      */
     async updateImageForNoteInTree(file: TFile) {
         if (!this.settings.enabled || !file || !file.path.endsWith('.md') || !this.cache) return;
+        // Skip if the file is currently being saved
+        if ('saving' in file && (file as unknown as { saving: boolean }).saving) return;
 
         const metadata = await this.getMetadata(file);
         if (!metadata || !metadata.favicon) {
