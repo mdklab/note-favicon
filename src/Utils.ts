@@ -1,12 +1,6 @@
 export default class Utils {
-    /**
-     * Utility function to introduce a delay.
-     * @param ms Number of milliseconds to delay.
-     */
-    static async delay(ms: number): Promise<void> {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
 
+    // Convert a Uint8Array to a data URL
     static uint8ArrayToDataURL(uint8Array: Uint8Array, mimeType: string = "image/png"): string {
         // Convert Uint8Array to a binary string
         const binaryString = uint8Array.reduce((data, byte) => data + String.fromCharCode(byte), "");
