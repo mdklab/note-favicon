@@ -31,16 +31,6 @@ export default class NoteFaviconSettingTab extends PluginSettingTab {
         containerEl.empty();
 
         new Setting(containerEl)
-            .setName("Enable Favicons")
-            .setDesc("Toggle favicon display in the file tree")
-            .addToggle(toggle => toggle
-                .setValue(this.plugin.settings.enabled)
-                .onChange(async (value) => {
-                    this.plugin.settings.enabled = value;
-                    await this.plugin.saveSettings();
-                }));
-
-        new Setting(containerEl)
             .setName("Reset cache")
             .setDesc("Clear favicons local cache")
             .addButton(button => button
