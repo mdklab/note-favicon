@@ -60,6 +60,17 @@ This plugin requires the following permissions:
 - **Read Vault**: To access the metadata of the notes.
 - **Modify Workspace**: To update the file tree and display the icons.
 
+## Privacy and External Requests
+
+This plugin fetches favicons from Google's service (https://www.google.com/s2/favicons). When a note contains a URL in its frontmatter, the plugin makes an external request to Google's favicon service to retrieve the favicon associated with the domain.
+
+### Privacy Considerations
+- **External Requests**: The plugin sends the domain of the URL to Google's favicon service to fetch the favicon image.
+- **Data Privacy**: Users should be aware that using this feature involves making external requests, which may have privacy implications depending on the content of the URLs.
+- **Base64 Images**: To avoid external requests, users can embed base64-encoded images directly in the frontmatter.
+- **Caching**: The plugin caches the favicons to reduce the number of requests made to Google's service.
+- **Data Collection**: The plugin does not collect any data or send any information to third parties.
+
 ## Contributing
 Contributions are welcome! Please feel free to submit a pull request or report issues in the [GitHub repository](https://github.com/mdklab/note-favicon).
 
