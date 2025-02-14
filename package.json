@@ -1,6 +1,6 @@
 {
   "name": "note-favicon",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Extracts a URL from the frontmatter of notes and displays an associated favicon image next to the note title in the file tree.",
   "main": "main.js",
   "scripts": {
