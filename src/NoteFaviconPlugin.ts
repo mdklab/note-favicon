@@ -4,6 +4,9 @@ import NoteFaviconCache from "./NoteFaviconCache";
 import {FileExplorerView, FileExplorerWorkspaceLeaf} from "./file-explorer";
 
 
+const ICON_TYPE_BASE64 = 'base64';
+const ICON_TYPE_URL = 'url';
+
 /**
  * Plugin class for displaying favicons in the file tree.
  */
@@ -98,18 +101,24 @@ export default class NoteFaviconPlugin extends Plugin {
             return;
         }
 
-        let cachedFavicon = await this.cache.getCachedFavicon(metadata.favicon);
-        if (!cachedFavicon) {
-            cachedFavicon = await this.cache.fetchAndCacheFavicon(metadata.favicon);
+        let faviconImage;
+        let iconType = this.getIconType(metadata.favicon);
+        if (iconType === ICON_TYPE_BASE64) {
+            faviconImage = metadata.favicon;
+        } else {
+            faviconImage = await this.cache.getCachedFavicon(metadata.favicon);
+            if (!faviconImage) {
+                faviconImage = await this.cache.fetchAndCacheFavicon(metadata.favicon);
+            }
         }
-        if (!cachedFavicon) {
+        if (!faviconImage) {
             this.removeImageFromTreeElement(file.path);
             return;
         }
 
         const fileTreeElement = this.findTreeElementForFile(file.path);
         if (fileTreeElement) {
-            this.updateImageInTreeElement(fileTreeElement, cachedFavicon);
+            this.updateImageInTreeElement(fileTreeElement, faviconImage);
         }
     }
 
@@ -188,6 +197,18 @@ export default class NoteFaviconPlugin extends Plugin {
                 .then(() => {
                     this.updateTree();
                 })
+        }
+    }
+
+    /**
+     * Returns the type of the favicon image.
+     * @param favicon
+     */
+    getIconType(favicon: String): string {
+        if (favicon && favicon.trim().startsWith('data:image')) {
+            return ICON_TYPE_BASE64;
+        } else {
+            return ICON_TYPE_URL;
         }
     }
 }
