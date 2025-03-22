@@ -205,7 +205,7 @@ export default class NoteFaviconPlugin extends Plugin {
      * @param favicon
      */
     getIconType(favicon: String): string {
-        if (favicon && favicon.trim().startsWith('data:image')) {
+        if (favicon && favicon.trim().toLowerCase().startsWith('data:image')) {
             return ICON_TYPE_BASE64;
         } else {
             return ICON_TYPE_URL;
