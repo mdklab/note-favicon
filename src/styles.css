@@ -3,5 +3,5 @@
     height: 20px;
     margin-right: 5px;
     margin-bottom: 2px;
-    vertical-align: middle;
+    align-self: baseline;
 }

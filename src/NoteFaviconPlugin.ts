@@ -155,7 +155,7 @@ export default class NoteFaviconPlugin extends Plugin {
         for (const fileItem of Object.values(fileExplorerView.fileItems)) {
             const typedItem = fileItem;
             if (typedItem.file?.path === path) {
-                return typedItem.selfEl?.querySelector('.tree-item-inner.nav-file-title-content') || null;
+                return typedItem.selfEl;
             }
         }
         return null;
