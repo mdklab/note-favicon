@@ -1,3 +1,7 @@
+.tree-item-self {
+    align-items: center;
+}
+
 .tree-favicon {
     width: 20px;
     height: 20px;
